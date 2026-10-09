@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Student Document Manager
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+<div id="authView">
+
+    <div class="auth-card">
+
+        <div class="logo">
+            📁
+        </div>
+
+        <h1>
+            Student Document Manager
+        </h1>
+
+        <p id="authSubtitle">
+            Sign in to access your document vault
+        </p>
+
+
+        <!-- LOGIN FORM -->
+
+        <form id="loginForm">
+
+            <input
+                type="email"
+                id="loginEmail"
+                placeholder="Email Address"
+                required
+            >
+
+            <input
+                type="password"
+                id="loginPassword"
+                placeholder="Password"
+                required
+            >
+
+            <button
+                type="submit"
+                class="primary-button"
+            >
+                Sign In
+            </button>
+
+        </form>
+
+
+        <!-- REGISTER FORM -->
+
+        <form
+            id="registerForm"
+            class="hidden"
+        >
+
+            <input
+                type="text"
+                id="registerName"
+                placeholder="Full Name"
+                required
+            >
+
+            <input
+                type="email"
+                id="registerEmail"
+                placeholder="Email Address"
+                required
+            >
+
+            <input
+                type="password"
+                id="registerPassword"
+                placeholder="Password"
+                minlength="6"
+                required
+            >
+
+            <button
+                type="submit"
+                class="primary-button"
+            >
+                Create Account
+            </button>
+
+        </form>
+
+
+        <div class="auth-switch">
+
+            <span id="switchText">
+                Don't have an account?
+            </span>
+
+            <button
+                type="button"
+                id="switchButton"
+            >
+                Register
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<div
+    id="appView"
+    class="hidden"
+>
+
+
+    <!-- HEADER -->
+
+    <header>
+
+        <div class="brand">
+
+            📁 DocVault
+
+        </div>
+
+
+        <div class="user-area">
+
+            <span id="welcomeUser">
+                Student
+            </span>
+
+            <button
+                id="logoutButton"
+            >
+                Logout
+            </button>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- MAIN -->
+
+    <main>
+
+
+        <section id="dashboardView">
+
+            <div class="page-heading">
+
+                <h2>
+                    Document Categories
+                </h2>
+
+                <p>
+                    Select a category to manage your documents.
+                </p>
+
+            </div>
+
+
+            <div class="category-grid">
+
+
+                <!-- ACADEMIC -->
+
+                <div
+                    class="category-card"
+                    data-category="Academic"
+                >
+
+                    <div class="category-icon">
+                        🎓
+                    </div>
+
+                    <h3>
+                        Academic Documents
+                    </h3>
+
+                    <p>
+                        Marksheets, assignments,
+                        certificates and notes.
+                    </p>
+
+                </div>
+
+
+
+                <!-- PERSONAL -->
+
+                <div
+                    class="category-card"
+                    data-category="Personal"
+                >
+
+                    <div class="category-icon">
+                        👤
+                    </div>
+
+                    <h3>
+                        Personal Documents
+                    </h3>
+
+                    <p>
+                        ID proof, resume and
+                        personal documents.
+                    </p>
+
+                </div>
+
+
+
+                <!-- OTHER -->
+
+                <div
+                    class="category-card"
+                    data-category="Other"
+                >
+
+                    <div class="category-icon">
+                        📂
+                    </div>
+
+                    <h3>
+                        Other Documents
+                    </h3>
+
+                    <p>
+                        Receipts, bills and
+                        project documents.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <section
+            id="categoryView"
+            class="hidden"
+        >
+
+
+            <div class="category-header">
+
+
+                <div>
+
+                    <button
+                        id="backButton"
+                        class="back-button"
+                    >
+                        ← Back
+                    </button>
+
+                    <h2 id="categoryTitle">
+                        Documents
+                    </h2>
+
+                </div>
+
+
+                <button
+                    id="addDocumentButton"
+                    class="primary-button"
+                >
+                    + Add Document
+                </button>
+
+            </div>
+
+
+
+            <!-- DOCUMENT LIST -->
+
+            <div
+                id="documentsContainer"
+                class="documents-container"
+            >
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+    <div
+        id="documentModal"
+        class="modal hidden"
+    >
+
+        <div class="modal-box">
+
+
+            <div class="modal-header">
+
+                <h3>
+                    Add Document
+                </h3>
+
+                <button
+                    id="closeModalButton"
+                    class="close-button"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <form id="documentForm">
+
+
+                <label>
+                    Document Name
+                </label>
+
+                <input
+                    type="text"
+                    id="documentName"
+                    placeholder="Example: Semester 5 Marksheet"
+                    required
+                >
+
+
+                <label>
+                    Document Type
+                </label>
+
+                <select
+                    id="documentType"
+                    required
+                >
+
+                    <option value="">
+                        Select Type
+                    </option>
+
+                    <option value="PDF">
+                        PDF
+                    </option>
+
+                    <option value="Image">
+                        Image
+                    </option>
+
+                    <option value="Document">
+                        Document
+                    </option>
+
+                    <option value="Certificate">
+                        Certificate
+                    </option>
+
+                    <option value="Other">
+                        Other
+                    </option>
+
+                </select>
+
+
+                <div class="modal-actions">
+
+                    <button
+                        type="submit"
+                        class="primary-button"
+                    >
+                        Save Document
+                    </button>
+
+                    <button
+                        type="button"
+                        id="cancelButton"
+                    >
+                        Cancel
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- JAVASCRIPT -->
+
+    <script
+        type="module"
+        src="app.js"
+    ></script>
+
+
+</div>
+
+</body>
+
+</html>
